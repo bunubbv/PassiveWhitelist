@@ -165,11 +165,13 @@ public final class PassiveWhitelist extends JavaPlugin implements Listener, TabE
                 freezePlayer(player);
             });
 
-            BukkitRunnable kickTask = showPlayerQuestion(player);
+            Bukkit.getScheduler().runTaskLater(this, () -> {
+                BukkitRunnable kickTask = showPlayerQuestion(player);
 
-            long delayTicks = 20L * 60 * kickDelay;
-            kickTask.runTaskLater(this, delayTicks);
-            kickTasks.put(player.getUniqueId(), kickTask);
+                long delayTicks = 20L * 60 * kickDelay;
+                kickTask.runTaskLater(this, delayTicks);
+                kickTasks.put(player.getUniqueId(), kickTask);
+            }, 1L);
         }
     }
 

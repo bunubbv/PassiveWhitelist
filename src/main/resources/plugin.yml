@@ -1,12 +1,12 @@
-name: ${name}
-version: ${version}
-api-version: ${api_version}
-main: ${main}
-author: ${author}
-website: ${website}
+name: PassiveWhitelist
+version: "${version}"
+main: com.bunubbv.passivewhitelist.PassiveWhitelist
+api-version: '1.19'
+author: bunubbv
+website: "https://github.com/bunubbv/PassiveWhitelist"
 commands:
   psw:
-    usage: /psw <bypass|reload|revoke>
+    usage: '/psw <bypass|reload|revoke>'
 permissions:
   psw.bypass:
     default: op

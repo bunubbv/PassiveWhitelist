@@ -5,17 +5,18 @@ plugins {
 }
 
 group = 'com.bunubbv'
+version = '2.2.3'
 
 repositories {
     mavenCentral()
     maven {
-        name = 'papermc-repo'
-        url = 'https://repo.papermc.io/repository/maven-public/'
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT")
+    compileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
     implementation "net.kyori:adventure-text-minimessage:4.20.0"
     implementation "net.kyori:adventure-text-serializer-legacy:4.17.0"
 }
@@ -44,29 +45,21 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
-tasks.shadowJar {
-    archiveClassifier.set('')
+tasks.named('shadowJar') {
+    archiveClassifier = ''
 }
 
-tasks.build {
-    dependsOn tasks.shadowJar
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
 }
 
 processResources {
-    filteringCharset 'UTF-8'
+    def props = [version: project.version]
 
-    inputs.properties([
-            version: project.version,
-    ])
+    inputs.properties props
+    filteringCharset = 'UTF-8'
 
     filesMatching('plugin.yml') {
-        expand(
-                name: 'PassiveWhitelist',
-                version: project.version,
-                api_version: "1.19",
-                main: "com.bunubbv.passivewhitelist.PassiveWhitelist",
-                author: project.author,
-                website: project.website,
-        )
+        expand props
     }
 }
