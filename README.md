@@ -1,4 +1,4 @@
-**PassiveWhitelist** is a lightweight plugin made for semi-private Minecraft servers, like those run by schools or small friend groups, where you want to keep access limited to people you trust. Instead of using the traditional whitelist system, new players have to answer a security question the first time they join. If they get it right, they’re permanently verified and can play on the server. You can customize the question, the answer and the time limit.
+**PassiveWhitelist** is a lightweight plugin for semi-private Minecraft servers, such as school servers, friend groups, or small communities. New players must answer a question when they join, so you can control who gets access without adding every player to a whitelist in advance. Players with the right answer are verified permanently and can play on the server. The question, answer, time limit, and messages are all customizable.
 
 ## Configuration
 * The plugin creates a config file at plugins/PassiveWhitelist/config.yml.
@@ -6,12 +6,13 @@
 
 ```yaml
 answer: "bunubbv"
-question: "<aqua>What is the nickname of the person who hosts our server?</aqua>"
-welcomeMessage: "<yellow>Welcome! Please answer the following question to play the server:</yellow>"
+question: "<aqua>Who is hosting our Minecraft server?</aqua>"
+welcomeMessage: "<yellow>Welcome! Please answer the question below to start playing.</yellow>"
 correctMessage: "<green>Correct! You're now verified and ready to play.</green>"
 incorrectMessage: "<red>Incorrect answer. Please try again.</red>"
 kickMessage: "<red>You didn't answer in time. Please try again later.</red>"
 kickDelay: 3 # minute(s)
+version: 1 # DO NOT EDIT
 ```
  
 * After editing the config, run /psw reload to apply changes without restarting the server.
