@@ -274,7 +274,7 @@ public final class PassiveWhitelist extends JavaPlugin implements Listener, TabE
 
         event.setCancelled(true);
 
-        if (answer != null && event.getMessage().equalsIgnoreCase(answer)) {
+        if (event.getMessage().equalsIgnoreCase(answer)) {
             Bukkit.getScheduler().runTask(this, () -> accept(player));
             return;
         }
@@ -434,20 +434,15 @@ public final class PassiveWhitelist extends JavaPlugin implements Listener, TabE
 
         String sub = args[0].toLowerCase(Locale.ROOT);
 
-        switch (sub) {
-            case "reload":
-                return reload(sender);
-
-            case "bypass":
-                return bypass(sender, args);
-
-            case "revoke":
-                return revoke(sender, args);
-
-            default:
+        return switch (sub) {
+            case "reload" -> reload(sender);
+            case "bypass" -> bypass(sender, args);
+            case "revoke" -> revoke(sender, args);
+            default -> {
                 usage(sender);
-                return true;
-        }
+                yield true;
+            }
+        };
     }
 
     private boolean reload(CommandSender sender) {
